@@ -1,38 +1,82 @@
 .App {
-  text-align: center;
+    text-align: center;
+    font-family: heisei-maru-gothic-std, sans-serif;
+    font-weight: 400;
+    font-style: normal;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+#top {
+    height: 100vh;
+    background: linear-gradient(to bottom,#051637,#1c2c52);
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.title {
+    position: relative;
+    color: #fff;
+    height: 50vh;
+    padding-top: 40vh;
+    margin-left: auto;
+    margin-right: auto;
+    box-sizing: border-box;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.title h1 {
+    margin: 0px;
+    padding: 5px;
+    font-size: min(50px,8vw);
+    color: #bbf0c8;
 }
 
-.App-link {
-  color: #61dafb;
+.scroll {
+    position: relative;
+    cursor: pointer;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.scroll p {
+    position: relative;
+    top: 100px;
+    color: #d0e093;
+    font-size: 2ch;
+    animation: anime 2s ease-in-out 0s infinite alternate none running;
+}
+
+@keyframes anime {
+    0% {
+        opacity: 0.0;
+    }
+    50% {
+        opacity: 1.0;
+    }
+    100% {
+        opacity: 0.0;
+    }
+}
+
+#select {
+    margin-left: auto;
+    margin-right: auto;
+    height: auto;
+    min-height: 100vh;
+    padding-left: calc(max(20px, 50vw - 400px));
+    padding-right: calc(max(20px, 50vw - 400px));
+    box-sizing: border-box;
+    background: linear-gradient(to bottom,#d3e2eb,#afcde0);
+}
+
+#select h3 {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+#game {
+    height: auto;
+    min-height: 100vh;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: calc(max(30px, 50vw - 600px));
+    padding-right: calc(max(30px, 50vw - 600px));
+    padding-top: 100px;
+    box-sizing: border-box;
+    text-align: center;
+    background: #f7fdfd;
 }
