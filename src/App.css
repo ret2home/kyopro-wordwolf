@@ -52,13 +52,11 @@
     }
 }
 
-#select {
+#game {
     margin-left: auto;
     margin-right: auto;
     height: auto;
     min-height: 100vh;
-    padding-left: calc(max(20px, 50vw - 400px));
-    padding-right: calc(max(20px, 50vw - 400px));
     box-sizing: border-box;
     background: linear-gradient(to bottom,#d3e2eb,#afcde0);
 }
@@ -68,15 +66,9 @@
     margin-right: 10px;
 }
 
-#game {
-    height: auto;
-    min-height: 100vh;
+#select {
     margin-left: auto;
     margin-right: auto;
     padding-left: calc(max(30px, 50vw - 600px));
     padding-right: calc(max(30px, 50vw - 600px));
-    padding-top: 100px;
-    box-sizing: border-box;
-    text-align: center;
-    background: #f7fdfd;
 }
