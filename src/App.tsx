@@ -14,7 +14,6 @@ import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
-import ReplayIcon from '@material-ui/icons/Replay';
 import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
@@ -144,10 +143,14 @@ function App() {
             wolfNumData = 0;
         }
         setWolfNumSelect(tmp);
+        setIsFinished(false);
+        setReceived(false);
     };
     const changeWolfNum = (event: React.ChangeEvent<{ value: unknown }>) => {
         let x: number = event.target.value as number;
         setWolfNum(x);
+        setIsFinished(false);
+        setReceived(false);
         wolfNumData = x;
     };
     const setWolf = (): boolean[] => {
@@ -188,6 +191,9 @@ function App() {
             }
             code = Math.floor(code / 36 + 0.001);
         }
+        setReceived(true);
+        setIsFinished(false);
+        setInviteCode(pass);
         return pass;
     }
     const decoding = (pass: string, index: number): boolean => {
@@ -233,13 +239,29 @@ function App() {
         let x: string = event.target.value as string;
         setInviteCode(x);
         inviteCodeData = x;
-        if (inviteIndex) setInviteOK(decoding(x, indexData));
+        setIsFinished(false);
+        setReceived(false);
+        if (inviteIndex) {
+            if (decoding(x, indexData)) {
+                setInviteOK(true);
+            } else {
+                setInviteOK(false);
+            }
+        } else {
+            setInviteOK(false);
+        }
     }
     const changeInviteIndex = (event: React.ChangeEvent<{ value: unknown }>) => {
         let x: number = event.target.value as number;
         setInviteIndex(x);
         indexData = x;
-        setInviteOK(decoding(inviteCodeData, x));
+        setIsFinished(false);
+        setReceived(false);
+        if (decoding(inviteCodeData, x)) {
+            setInviteOK(true);
+        } else {
+            setInviteOK(false);
+        }
     }
     return (
         <div className="App">
@@ -282,7 +304,7 @@ function App() {
                             </FormControl>
                         </div>
                         <br /><br />
-                        <Button variant="contained" color="primary" onClick={() => { setGenDialog(true); setGenMessage(generateCode()) }} disabled={wolfNum == 0}>Generate!</Button>
+                        <Button variant="contained" color="primary" onClick={() => { setGenDialog(true); setReceived(true); setGenMessage(generateCode()) }} disabled={wolfNum == 0}>Generate!</Button>
                         <Dialog open={genDialog} onClose={() => setGenDialog(false)}>
                             <DialogContent>
                                 <DialogContentText>
@@ -299,9 +321,9 @@ function App() {
                     <div id="select">
                         <div className={classes.select}>
                             <h3>招待コードと番号を入力して下さい</h3>
-                            <form className={classes.code} noValidate autoComplete="off">
+                            <FormControl className={classes.formControl} >
                                 <TextField value={inviteCode} onChange={changeInviteCode} label="Invite Code" />
-                            </form>
+                            </FormControl>
                             <FormControl className={classes.formControl} >
                                 <InputLabel>Invite Number</InputLabel>
                                 <Select value={inviteIndex} onChange={changeInviteIndex}>
@@ -323,6 +345,23 @@ function App() {
                         </div>
                     </div>
                 }
+                {received ? (
+                    <React.Fragment>
+                        <br />
+                        {isFinished ? (
+                            <div>
+                                <h3>
+                                    ウルフ : {words[theme][(whichWolf ? 1 : 0)]} <br /><br />
+                                    市民 : {words[theme][(whichWolf ? 0 : 1)]}
+                                </h3>
+                            </div>
+                        )
+                            : null}
+
+                        <Button variant="contained" color="secondary" onClick={() => setIsFinished(true)}>解答を表示</Button>
+                    </React.Fragment>
+                ) : null}
+                <br /><br />
             </div>
         </div>
     );

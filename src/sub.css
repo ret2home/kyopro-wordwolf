@@ -1,0 +1,82 @@
+.sub-App {
+    text-align: center;
+    font-family: heisei-maru-gothic-std, sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+#sub-top {
+    height: 100vh;
+    background: linear-gradient(to bottom,#051637,#1c2c52);
+}
+
+.sub-title {
+    position: relative;
+    color: #fff;
+    height: 50vh;
+    padding-top: 40vh;
+    margin-left: auto;
+    margin-right: auto;
+    box-sizing: border-box;
+}
+
+.sub-title h1 {
+    margin: 0px;
+    padding: 5px;
+    font-size: min(50px,8vw);
+    color: #bbf0c8;
+}
+
+.sub-scroll {
+    position: relative;
+    cursor: pointer;
+}
+
+.sub-scroll p {
+    position: relative;
+    top: 100px;
+    color: #d0e093;
+    font-size: 2ch;
+    animation: anime 2s ease-in-out 0s infinite alternate none running;
+}
+
+@keyframes anime {
+    0% {
+        opacity: 0.0;
+    }
+    50% {
+        opacity: 1.0;
+    }
+    100% {
+        opacity: 0.0;
+    }
+}
+
+#sub-select {
+    margin-left: auto;
+    margin-right: auto;
+    height: auto;
+    min-height: 100vh;
+    padding-left: calc(max(20px, 50vw - 400px));
+    padding-right: calc(max(20px, 50vw - 400px));
+    box-sizing: border-box;
+    background: linear-gradient(to bottom,#d3e2eb,#afcde0);
+}
+
+#sub-select h3 {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+#sub-game {
+    height: auto;
+    min-height: 100vh;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: calc(max(30px, 50vw - 600px));
+    padding-right: calc(max(30px, 50vw - 600px));
+    padding-top: 100px;
+    box-sizing: border-box;
+    text-align: center;
+    background: #f7fdfd;
+}
