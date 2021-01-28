@@ -59,6 +59,8 @@
     min-height: 100vh;
     box-sizing: border-box;
     background: linear-gradient(to bottom,#d3e2eb,#afcde0);
+    position: relative;
+    text-align: center;
 }
 
 #select h3 {

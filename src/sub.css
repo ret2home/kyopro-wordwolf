@@ -57,10 +57,9 @@
     margin-right: auto;
     height: auto;
     min-height: 100vh;
-    padding-left: calc(max(20px, 50vw - 400px));
-    padding-right: calc(max(20px, 50vw - 400px));
     box-sizing: border-box;
     background: linear-gradient(to bottom,#d3e2eb,#afcde0);
+    position: relative;
 }
 
 #sub-select h3 {
@@ -79,4 +78,9 @@
     box-sizing: border-box;
     text-align: center;
     background: #f7fdfd;
+}
+
+#input_name{
+    padding-left: calc(max(30px, 50vw - 500px));
+    padding-right: calc(max(30px, 50vw - 500px));
 }

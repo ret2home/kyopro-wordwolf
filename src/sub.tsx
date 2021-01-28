@@ -427,6 +427,9 @@ function SubApp() {
                     </div>
 
                 ) : null}
+                <div style={{ "position": "absolute", "top": "2ch","marginLeft":"auto","marginRight":"auto","width":"100%" }} >
+                    <a href="/#game">招待コード制バージョン</a>
+                </div>
             </div>
             {wolfNum ? (
                 <div id="sub-game">

@@ -123,8 +123,6 @@ function App() {
     const classes = useStyles();
     const [playerNum, setPlayerNum] = useState<number>(0);
     const [wolfNum, setWolfNum] = useState<number>(0);
-    const [isStarted, setIsStarted] = useState<boolean>(false);
-    const [isFinished, setIsFinished] = useState<boolean>(false);
     const playerNumSelect: JSX.Element[] = sel(3);
     const indexSelect: JSX.Element[] = sel(1);
     const [wolfNumSelect, setWolfNumSelect] = useState<JSX.Element[]>();
@@ -176,8 +174,14 @@ function App() {
         code <<= 7;
         code += theme;
         code <<= 10;
-        for (let i = 0; i < playerNumData; i++) {
-            code += (1 << i) * (wolf[i] ? 1 : 0);
+        for (let i = 0; i < 10; i++) {
+            if (i < playerNumData) {
+                code += (1 << i) * (wolf[i] ? 1 : 0);
+            } else {
+                if (Math.floor(Math.random() * 2) == 1) {
+                    code += (1 << i);
+                }
+            }
         }
         code *= 0x3392;
         code %= 0x4a26f;
@@ -194,6 +198,7 @@ function App() {
         setReceived(true);
         setIsFinished(false);
         setInviteCode(pass);
+        inviteCodeData = pass;
         return pass;
     }
     const decoding = (pass: string, index: number): boolean => {
@@ -235,6 +240,8 @@ function App() {
     const [inviteIndex, setInviteIndex] = useState<number>(0);
     const [received, setReceived] = useState<boolean>(false);
     const [inviteOK, setInviteOK] = useState<boolean>(false);
+    const [isFinished, setIsFinished] = useState<boolean>(false);
+    const [finDialog, setFinDialog] = useState<boolean>(false);
     const changeInviteCode = (event: React.ChangeEvent<{ value: unknown }>) => {
         let x: string = event.target.value as string;
         setInviteCode(x);
@@ -356,12 +363,29 @@ function App() {
                                 </h3>
                             </div>
                         )
-                            : null}
+                            : (
+                                <React.Fragment>
+                                    <Button variant="contained" color="secondary" onClick={() => setFinDialog(true)}>解答を表示</Button>
+                                    <Dialog open={finDialog} onClose={() => setFinDialog(false)}>
+                                        <DialogContent>
+                                            <DialogContentText>
+                                                ゲームを終了し、解答を表示します。よろしいですか？
+                                    </DialogContentText>
+                                        </DialogContent>
+                                        <DialogActions>
+                                            <Button onClick={() => setFinDialog(false)}>Cancel</Button>
+                                            <Button onClick={() => { setFinDialog(false); setIsFinished(true); }}>OK</Button>
+                                        </DialogActions>
+                                    </Dialog>
+                                </React.Fragment>
+                            )}
 
-                        <Button variant="contained" color="secondary" onClick={() => setIsFinished(true)}>解答を表示</Button>
                     </React.Fragment>
                 ) : null}
                 <br /><br />
+                <div style={{ "position": "absolute", "top": "6ch","marginLeft":"auto","marginRight":"auto","width":"100%" }} >
+                    <a href="/sub#sub-select">非招待コード制バージョン</a>
+                </div>
             </div>
         </div>
     );
